@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр презентации</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .presentation-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .slide-image {
+            max-width: 100%;
+            max-height: 100vh;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-button {
+            background-color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+            .control-button:hover {
+                background-color: #ddd;
+            }
+
+        .slide-counter {
+            color: #fff;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <img id="slideImage" class="slide-image" src="" alt="Слайд презентации">
+    </div>
+    <div class="controls">
+        <button class="control-button" onclick="previousSlide()">←</button>
+        <span class="slide-counter" id="slideCounter">1 / 1</span>
+        <button class="control-button" onclick="nextSlide()">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let slides = [];
+
+        async function loadSlides() {
+            try {
+                const response = await fetch('/api/presentation/slides');
+                slides = await response.json();
+                updateSlide();
+            } catch (error) {
+                console.error('Ошибка загрузки слайдов:', error);
+            }
+        }
+
+        function updateSlide() {
+            const slideImage = document.getElementById('slideImage');
+            const slideCounter = document.getElementById('slideCounter');
+
+            slideImage.src = slides[currentSlide];
+            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        loadSlides();
+    </script>
+</body>
+</html>
