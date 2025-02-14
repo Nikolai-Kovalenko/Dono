@@ -1,118 +1,147 @@
 ﻿<!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Просмотр презентации</title>
+    <title>Presentation Viewer</title>
     <style>
-        body {
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #000;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background: black;
+            overflow: hidden;
         }
 
-        .presentation-container {
-            flex: 1;
+        .slide-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
         }
 
         .slide-image {
-            max-width: 100%;
+            max-width: 100vw;
             max-height: 100vh;
+            width: auto;
             height: auto;
             object-fit: contain;
+            display: block;
         }
 
-        .controls {
+        #debug {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .control-button {
-            background-color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-            .control-button:hover {
-                background-color: #ddd;
-            }
-
-        .slide-counter {
-            color: #fff;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: monospace;
+            z-index: 1000;
+            background: rgba(0,0,0,0.7);
             padding: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="presentation-container">
-        <img id="slideImage" class="slide-image" src="" alt="Слайд презентации">
-    </div>
-    <div class="controls">
-        <button class="control-button" onclick="previousSlide()">←</button>
-        <span class="slide-counter" id="slideCounter">1 / 1</span>
-        <button class="control-button" onclick="nextSlide()">→</button>
+    <div id="debug"></div>
+    <div class="slide-container">
+        <img id="slideImage" class="slide-image" alt="">
     </div>
 
     <script>
         let currentSlide = 0;
         let slides = [];
+        let slideInterval = null;
+        let intervalMs = 1000 * 10;
+
+        function debug(message) {
+            const debugDiv = document.getElementById('debug');
+            debugDiv.innerHTML += message + '<br>';
+            console.log(message);
+        }
 
         async function loadSlides() {
+            debug('Starting to load slides...');
             try {
-                const response = await fetch('/api/presentation/slides');
-                slides = await response.json();
-                updateSlide();
+                const response = await fetch('/slides');
+                debug('Fetch completed');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                debug(`Received data: ${JSON.stringify(data)}`);
+
+                slides = Array.isArray(data) ? data : (data.Slides || []);
+                debug(`Processed ${slides.length} slides`);
+
+                if (slides.length > 0) {
+                    debug(`First slide path: ${slides[0]}`);
+                    showSlide(0);
+                    if (slides.length > 1) {
+                        startSlideShow();
+                    }
+                } else {
+                    debug('No slides received');
+                }
             } catch (error) {
-                console.error('Ошибка загрузки слайдов:', error);
+                debug(`Error: ${error.message}`);
+                // Попробуем загрузить слайды напрямую из папки
+                try {
+                    debug('Attempting direct folder access...');
+                    const slide = '/slides/slide_0.png';
+                    slides = [slide];
+                    showSlide(0);
+                } catch (e) {
+                    debug(`Direct access error: ${e.message}`);
+                }
             }
         }
 
-        function updateSlide() {
-            const slideImage = document.getElementById('slideImage');
-            const slideCounter = document.getElementById('slideCounter');
+        function showSlide(index) {
+            if (slides.length === 0) {
+                debug('No slides to show');
+                return;
+            }
+            currentSlide = (index + slides.length) % slides.length;
+            const img = document.getElementById('slideImage');
+            debug(`Loading slide: ${slides[currentSlide]}`);
 
-            slideImage.src = slides[currentSlide];
-            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            img.onload = function() {
+                debug('Image loaded successfully');
+                // Скрываем отладочную информацию через 3 секунды после успешной загрузки
+                setTimeout(() => {
+                    document.getElementById('debug').style.display = 'none';
+                }, 3000);
+            };
+
+            img.onerror = function() {
+                debug(`Failed to load image: ${slides[currentSlide]}`);
+                // Попробуем загрузить изображение с другим путем
+                const altPath = slides[currentSlide].startsWith('/') ?
+                    slides[currentSlide].substring(1) :
+                    '/' + slides[currentSlide];
+                debug(`Trying alternative path: ${altPath}`);
+                img.src = altPath;
+            };
+
+            img.src = slides[currentSlide];
         }
 
-        function nextSlide() {
-            if (currentSlide < slides.length - 1) {
-                currentSlide++;
-                updateSlide();
+        function startSlideShow() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
             }
+            slideInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, intervalMs);
         }
 
-        function previousSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlide();
-            }
-        }
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') {
-                nextSlide();
-            } else if (event.key === 'ArrowLeft') {
-                previousSlide();
-            }
-        });
-
+        debug('Script started');
         loadSlides();
     </script>
 </body>

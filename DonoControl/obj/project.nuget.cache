@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qBppMuc+hRs0L3tRe3tnbX1+lTfaisf+wojHR2yUxwtFMp4TvmiQf1mH0vaPiEF3HiVwv/dRPDgSkArUeMS/ZA==",
+  "dgSpecHash": "//kgEjpfGORgKQpQmh5X68FhXsksjb1xDS1DURUqGyFC0gJQOS7b2talR4cio4rzv00/W4Ybnd5MaJ0cJM2QNQ==",
   "success": true,
-  "projectFilePath": "F:\\Project\\DonoControl\\DonoControl\\DonoControl\\DonoControl.csproj",
+  "projectFilePath": "F:\\DonoControll\\DonoControl\\DonoControl.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nik\\.nuget\\packages\\bodi\\1.5.0\\bodi.1.5.0.nupkg.sha512",
     "C:\\Users\\nik\\.nuget\\packages\\gherkin\\19.0.3\\gherkin.19.0.3.nupkg.sha512",

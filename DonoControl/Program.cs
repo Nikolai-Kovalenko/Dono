@@ -35,6 +35,4 @@ app.MapGet("/api/presentation/slides", async (IPresentationService presentationS
 app.MapGet("/slides", async (IPresentationService presentationService)
     => await presentationService.GetSlidesAsync());
 
-//builder.WebHost.UseUrls("http://192.168.1.121:5000");
-
 app.Run();

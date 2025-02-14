@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Project\\DonoControl\\DonoControl\\DonoControl\\DonoControl.csproj": {}
+    "F:\\DonoControll\\DonoControl\\DonoControl.csproj": {}
   },
   "projects": {
-    "F:\\Project\\DonoControl\\DonoControl\\DonoControl\\DonoControl.csproj": {
+    "F:\\DonoControll\\DonoControl\\DonoControl.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Project\\DonoControl\\DonoControl\\DonoControl\\DonoControl.csproj",
+        "projectUniqueName": "F:\\DonoControll\\DonoControl\\DonoControl.csproj",
         "projectName": "DonoControl",
-        "projectPath": "F:\\Project\\DonoControl\\DonoControl\\DonoControl\\DonoControl.csproj",
+        "projectPath": "F:\\DonoControll\\DonoControl\\DonoControl.csproj",
         "packagesPath": "C:\\Users\\nik\\.nuget\\packages\\",
-        "outputPath": "F:\\Project\\DonoControl\\DonoControl\\DonoControl\\obj\\",
+        "outputPath": "F:\\DonoControll\\DonoControl\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nik\\AppData\\Roaming\\NuGet\\NuGet.Config",

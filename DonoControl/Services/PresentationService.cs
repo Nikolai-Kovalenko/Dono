@@ -47,6 +47,8 @@ namespace DonoControl.Services
                     return Results.BadRequest("Presentation file not found");
                 }
 
+                DeleteSlides();
+
                 var presentation = new Presentation();
                 _logger.LogInformation("Loading presentation from {FilePath}", _settings.FilePath);
                 presentation.LoadFromFile(_settings.FilePath);
@@ -57,8 +59,8 @@ namespace DonoControl.Services
                     var imagePath = Path.Combine("slides", $"slide_{i}.png");
                     var physicalPath = Path.Combine(_wwwrootPath, imagePath);
 
-                    int width = 1024;
-                    int height = 768;
+                    int width = 1920;
+                    int height = 1080;
 
                     using (Image slideImage = presentation.Slides[i].SaveAsImage(width, height))
                     {
@@ -74,6 +76,19 @@ namespace DonoControl.Services
             {
                 _logger.LogError(ex, "Error processing presentation");
                 return Results.Problem("Internal server error while processing presentation", statusCode: 500);
+            }
+        }
+
+        private void DeleteSlides()
+        {
+            string slidesDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "slides");
+
+            if (Directory.Exists(slidesDirectory))
+            {
+                foreach (string file in Directory.GetFiles(slidesDirectory))
+                {
+                    File.Delete(file);
+                }
             }
         }
 
