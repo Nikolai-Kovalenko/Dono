@@ -66,7 +66,10 @@ namespace DonoControl.Services
 
                     using (Image slideImage = presentation.Slides[i].SaveAsImage(width, height))
                     {
-                        slideImage.Save(physicalPath, System.Drawing.Imaging.ImageFormat.Png);
+                        Bitmap croppedImage = CropTop(slideImage, 35);
+                        Bitmap resizedImage = new Bitmap(croppedImage, new Size(1920, 1080));
+
+                        resizedImage.Save(physicalPath, System.Drawing.Imaging.ImageFormat.Png);
                     }
 
                     slides.Add($"/{imagePath}");
@@ -92,6 +95,15 @@ namespace DonoControl.Services
                     File.Delete(file);
                 }
             }
+        }
+
+        private Bitmap CropTop(Image image, int pixelsToRemove)
+        {
+            Bitmap croppedImage = new Bitmap(image);
+            Rectangle cropRect = new Rectangle(0, pixelsToRemove, croppedImage.Width, croppedImage.Height - pixelsToRemove);
+            Bitmap cropped = croppedImage.Clone(cropRect, croppedImage.PixelFormat);
+            croppedImage.Dispose();
+            return cropped;
         }
 
     }

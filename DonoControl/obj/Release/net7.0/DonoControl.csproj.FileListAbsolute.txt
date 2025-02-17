@@ -106,3 +106,6 @@ F:\DonoControll\DonoControl\bin\Release\net7.0\Serilog.Sinks.Console.dll
 F:\DonoControll\DonoControl\bin\Release\net7.0\Serilog.Sinks.Debug.dll
 F:\DonoControll\DonoControl\bin\Release\net7.0\Serilog.Sinks.File.dll
 F:\DonoControll\DonoControl\bin\Release\net7.0\Serilog.Sinks.RollingFile.dll
+F:\DonoControll\DonoControl\bin\Release\net7.0\DocumentFormat.OpenXml.dll
+F:\DonoControll\DonoControl\bin\Release\net7.0\DocumentFormat.OpenXml.Framework.dll
+F:\DonoControll\DonoControl\bin\Release\net7.0\System.IO.Packaging.dll
