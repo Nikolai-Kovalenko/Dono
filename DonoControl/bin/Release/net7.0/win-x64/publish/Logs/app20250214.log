@@ -1,0 +1,14 @@
+2025-02-14 21:35:00.782 +02:00 [INF] App is running at: http://192.168.1.121:5000
+2025-02-14 21:35:01.414 +02:00 [WRN] Overriding address(es) 'http://192.168.1.121:5000'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-02-14 21:35:01.427 +02:00 [INF] Now listening on: http://0.0.0.0:5000
+2025-02-14 21:35:01.428 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-14 21:35:01.429 +02:00 [INF] Hosting environment: Production
+2025-02-14 21:35:01.430 +02:00 [INF] Content root path: F:\DonoControll\DonoControl\bin\Release\net7.0\win-x64\publish
+2025-02-14 21:35:05.855 +02:00 [INF] Request starting HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - -
+2025-02-14 21:35:06.117 +02:00 [INF] Request finished HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - - - 404 0 - 262.8829ms
+2025-02-14 21:36:52.802 +02:00 [INF] Request starting HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - -
+2025-02-14 21:36:52.804 +02:00 [INF] Request finished HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - - - 404 0 - 1.8707ms
+2025-02-14 21:36:55.915 +02:00 [INF] Request starting HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - -
+2025-02-14 21:36:55.917 +02:00 [INF] Request finished HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - - - 404 0 - 1.7129ms
+2025-02-14 21:36:59.392 +02:00 [INF] Request starting HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - -
+2025-02-14 21:36:59.393 +02:00 [INF] Request finished HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - - - 404 0 - 1.2369ms

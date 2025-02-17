@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+п»їusing Microsoft.AspNetCore.Builder;
 using DonoControl.Services;
 using DonoControl.Configuration;
 using System.Diagnostics;
@@ -9,12 +9,11 @@ using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Для локального запуска закомментируйте эту строку
-// builder.Host.UseWindowsService();
+builder.Host.UseWindowsService();
 
 string ipAddress = IpHelper.GetLocalIpAddress();
 
-builder.WebHost.UseUrls($"http://{ipAddress}:5000");
+builder.WebHost.UseUrls($"http://{ipAddress}:5001");
 
 builder.Services.AddDirectoryBrowser();
 builder.Services.Configure<PresentationSettings>(

@@ -1,0 +1,6 @@
+F:\C#\DonoControllApp\appsettings.Development.json
+F:\C#\DonoControllApp\appsettings.json
+F:\C#\DonoControllApp\package-lock.json
+F:\C#\DonoControllApp\package.json
+F:\C#\DonoControllApp\DonoControl.pdb
+F:\C#\DonoControllApp\DonoControl.exe

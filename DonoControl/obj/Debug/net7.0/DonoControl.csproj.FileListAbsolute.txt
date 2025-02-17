@@ -58,7 +58,6 @@ F:\DonoControll\DonoControl\bin\Debug\net7.0\DonoControl.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\DonoControl.pdb
 F:\DonoControll\DonoControl\bin\Debug\net7.0\BoDi.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\Gherkin.dll
-F:\DonoControll\DonoControl\bin\Debug\net7.0\Microsoft.DotNet.PlatformAbstractions.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Binder.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
@@ -69,7 +68,6 @@ F:\DonoControll\DonoControl\bin\Debug\net7.0\Microsoft.Extensions.ObjectPool.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
-F:\DonoControll\DonoControl\bin\Debug\net7.0\Newtonsoft.Json.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\TechTalk.SpecFlow.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\SpecFlow.Internal.Json.dll
 F:\DonoControll\DonoControl\bin\Debug\net7.0\Spire.Presentation.dll
@@ -96,3 +94,15 @@ F:\DonoControll\DonoControl\obj\Debug\net7.0\refint\DonoControl.dll
 F:\DonoControll\DonoControl\obj\Debug\net7.0\DonoControl.pdb
 F:\DonoControll\DonoControl\obj\Debug\net7.0\DonoControl.genruntimeconfig.cache
 F:\DonoControll\DonoControl\obj\Debug\net7.0\ref\DonoControl.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.AspNetCore.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Extensions.Hosting.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Extensions.Logging.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Extensions.Logging.File.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Formatting.Compact.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Settings.Configuration.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Sinks.Async.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Sinks.Console.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Sinks.Debug.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Sinks.File.dll
+F:\DonoControll\DonoControl\bin\Debug\net7.0\Serilog.Sinks.RollingFile.dll

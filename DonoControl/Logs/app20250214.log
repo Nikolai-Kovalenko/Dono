@@ -1,0 +1,19 @@
+2025-02-14 21:12:52.342 +02:00 [INF] App is running at: http://192.168.1.121:5000
+2025-02-14 21:13:07.882 +02:00 [WRN] Overriding address(es) 'http://192.168.1.121:5000'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-02-14 21:13:07.896 +02:00 [INF] Now listening on: http://0.0.0.0:5000
+2025-02-14 21:13:07.897 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-14 21:13:07.898 +02:00 [INF] Hosting environment: Development
+2025-02-14 21:13:07.898 +02:00 [INF] Content root path: F:\DonoControll\DonoControl
+2025-02-14 21:13:14.042 +02:00 [INF] Request starting HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - -
+2025-02-14 21:13:14.132 +02:00 [INF] The file /presentation.html was not modified
+2025-02-14 21:13:14.142 +02:00 [INF] Request finished HTTP/1.1 GET http://192.168.1.121:5000/presentation.html - - - 304 - text/html 102.7194ms
+2025-02-14 21:13:15.354 +02:00 [INF] Request starting HTTP/1.1 GET http://192.168.1.121:5000/slides - -
+2025-02-14 21:13:15.364 +02:00 [INF] Executing endpoint 'HTTP: GET /slides'
+2025-02-14 21:13:16.056 +02:00 [INF] Loading presentation from C:\Users\nik\Documents\Dono\DonoMenyu.pptx
+2025-02-14 21:13:17.790 +02:00 [INF] Setting HTTP status code 200.
+2025-02-14 21:13:17.794 +02:00 [INF] Writing value of type 'List`1' as Json.
+2025-02-14 21:13:17.830 +02:00 [INF] Executed endpoint 'HTTP: GET /slides'
+2025-02-14 21:13:17.833 +02:00 [INF] Request finished HTTP/1.1 GET http://192.168.1.121:5000/slides - - - 200 - application/json;+charset=utf-8 2478.8873ms
+2025-02-14 21:13:17.836 +02:00 [INF] Request starting HTTP/1.1 GET http://192.168.1.121:5000/slides/slide_0.png - -
+2025-02-14 21:13:17.874 +02:00 [INF] Sending file. Request path: '/slides/slide_0.png'. Physical path: 'F:\DonoControll\DonoControl\wwwroot\slides\slide_0.png'
+2025-02-14 21:13:17.877 +02:00 [INF] Request finished HTTP/1.1 GET http://192.168.1.121:5000/slides/slide_0.png - - - 200 1272979 image/png 41.1075ms

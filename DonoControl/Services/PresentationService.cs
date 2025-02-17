@@ -53,6 +53,8 @@ namespace DonoControl.Services
                 _logger.LogInformation("Loading presentation from {FilePath}", _settings.FilePath);
                 presentation.LoadFromFile(_settings.FilePath);
 
+                presentation.Masters[0].SlideBackground.Fill.FillType = Spire.Presentation.Drawing.FillFormatType.None;
+
                 var slides = new List<string>();
                 for (int i = 0; i < presentation.Slides.Count; i++)
                 {

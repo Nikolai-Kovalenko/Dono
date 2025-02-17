@@ -32,116 +32,41 @@
             object-fit: contain;
             display: block;
         }
-
-        #debug {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            color: white;
-            font-family: monospace;
-            z-index: 1000;
-            background: rgba(0,0,0,0.7);
-            padding: 10px;
-        }
     </style>
 </head>
 <body>
-    <div id="debug"></div>
     <div class="slide-container">
-        <img id="slideImage" class="slide-image" alt="">
+        <img id="slideImage" class="slide-image" alt="Slide">
     </div>
 
     <script>
         let currentSlide = 0;
         let slides = [];
-        let slideInterval = null;
-        let intervalMs = 1000 * 10;
-
-        function debug(message) {
-            const debugDiv = document.getElementById('debug');
-            debugDiv.innerHTML += message + '<br>';
-            console.log(message);
-        }
+        let intervalMs = 10000;
 
         async function loadSlides() {
-            debug('Starting to load slides...');
             try {
                 const response = await fetch('/slides');
-                debug('Fetch completed');
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
                 const data = await response.json();
-                debug(`Received data: ${JSON.stringify(data)}`);
-
                 slides = Array.isArray(data) ? data : (data.Slides || []);
-                debug(`Processed ${slides.length} slides`);
 
                 if (slides.length > 0) {
-                    debug(`First slide path: ${slides[0]}`);
                     showSlide(0);
-                    if (slides.length > 1) {
-                        startSlideShow();
-                    }
-                } else {
-                    debug('No slides received');
+                    setInterval(() => showSlide(currentSlide + 1), intervalMs);
                 }
             } catch (error) {
-                debug(`Error: ${error.message}`);
-                // Попробуем загрузить слайды напрямую из папки
-                try {
-                    debug('Attempting direct folder access...');
-                    const slide = '/slides/slide_0.png';
-                    slides = [slide];
-                    showSlide(0);
-                } catch (e) {
-                    debug(`Direct access error: ${e.message}`);
-                }
+                console.error(`Error loading slides: ${error.message}`);
             }
         }
 
         function showSlide(index) {
-            if (slides.length === 0) {
-                debug('No slides to show');
-                return;
-            }
+            if (slides.length === 0) return;
             currentSlide = (index + slides.length) % slides.length;
-            const img = document.getElementById('slideImage');
-            debug(`Loading slide: ${slides[currentSlide]}`);
-
-            img.onload = function() {
-                debug('Image loaded successfully');
-                // Скрываем отладочную информацию через 3 секунды после успешной загрузки
-                setTimeout(() => {
-                    document.getElementById('debug').style.display = 'none';
-                }, 3000);
-            };
-
-            img.onerror = function() {
-                debug(`Failed to load image: ${slides[currentSlide]}`);
-                // Попробуем загрузить изображение с другим путем
-                const altPath = slides[currentSlide].startsWith('/') ?
-                    slides[currentSlide].substring(1) :
-                    '/' + slides[currentSlide];
-                debug(`Trying alternative path: ${altPath}`);
-                img.src = altPath;
-            };
-
-            img.src = slides[currentSlide];
+            document.getElementById('slideImage').src = slides[currentSlide];
         }
 
-        function startSlideShow() {
-            if (slideInterval) {
-                clearInterval(slideInterval);
-            }
-            slideInterval = setInterval(() => {
-                showSlide(currentSlide + 1);
-            }, intervalMs);
-        }
-
-        debug('Script started');
         loadSlides();
     </script>
 </body>
