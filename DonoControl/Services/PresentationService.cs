@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Drawing;
 using System.Runtime;
+using DonoControl.Services.Interfaces;
 
 namespace DonoControl.Services
 {
@@ -66,7 +67,7 @@ namespace DonoControl.Services
 
                     using (Image slideImage = presentation.Slides[i].SaveAsImage(width, height))
                     {
-                        Bitmap croppedImage = CropTop(slideImage, 35);
+                        Bitmap croppedImage = CropTop(slideImage, 40);
                         Bitmap resizedImage = new Bitmap(croppedImage, new Size(1920, 1080));
 
                         resizedImage.Save(physicalPath, System.Drawing.Imaging.ImageFormat.Png);
